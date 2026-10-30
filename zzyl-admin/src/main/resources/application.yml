@@ -102,13 +102,21 @@ token:
   expireTime: 30
 
 # MyBatis配置
-mybatis:
+mybatis-plus:
   # 搜索指定包别名
   typeAliasesPackage: com.zzyl.**.domain
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
   mapperLocations: classpath*:mapper/**/*Mapper.xml
   # 加载全局的配置文件
-  configLocation: classpath:mybatis/mybatis-config.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true
+    use-generated-keys: true
+    default-executor-type: SIMPLE
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    db-config:
+      id-type: auto
 
 # PageHelper分页插件
 pagehelper:
@@ -125,10 +133,19 @@ springdoc:
     path: /swagger-ui.html
     tags-sorter: alpha
   group-configs:
-    - group: 'default'
-      display-name: '测试模块'
-      paths-to-match: '/**'
-      packages-to-scan: com.zzyl.web.controller.tool
+    - group: default
+      display-name: 测试模块
+      paths-to-match:
+        - /**
+      packages-to-scan:
+        - com.zzyl.web.controller.tool
+
+    - group: nursing
+      display-name: 护理项目管理
+      paths-to-match:
+        - /nursing/**
+      packages-to-scan:
+        - com.zzyl.nursing.controller
 
 # 防盗链配置
 referer:
@@ -145,3 +162,11 @@ xss:
   excludes: /system/notice
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+
+knife4j:
+  enable: true
+  production: false
+  basic:
+    enable: false
+  setting:
+    language: zh_cn

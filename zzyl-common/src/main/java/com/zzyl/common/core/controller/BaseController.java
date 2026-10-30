@@ -23,7 +23,7 @@ import com.zzyl.common.utils.sql.SqlUtil;
 
 /**
  * web层通用数据处理
- * 
+ *
  * @author ruoyi
  */
 public class BaseController
@@ -80,9 +80,9 @@ public class BaseController
      * 响应请求分页数据
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    protected TableDataInfo getDataTable(List<?> list)
+    protected <T> TableDataInfo<T> getDataTable(List<T> list)
     {
-        TableDataInfo rspData = new TableDataInfo();
+        TableDataInfo<T> rspData = new TableDataInfo<>();
         rspData.setCode(HttpStatus.SUCCESS);
         rspData.setMsg("查询成功");
         rspData.setRows(list);
@@ -113,7 +113,7 @@ public class BaseController
     {
         return AjaxResult.success(message);
     }
-    
+
     /**
      * 返回成功消息
      */
@@ -140,7 +140,7 @@ public class BaseController
 
     /**
      * 响应返回结果
-     * 
+     *
      * @param rows 影响行数
      * @return 操作结果
      */
@@ -151,7 +151,7 @@ public class BaseController
 
     /**
      * 响应返回结果
-     * 
+     *
      * @param result 结果
      * @return 操作结果
      */

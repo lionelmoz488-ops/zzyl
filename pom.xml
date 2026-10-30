@@ -31,6 +31,7 @@
         <jwt.version>0.9.1</jwt.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <springdoc.version>3.1.0</springdoc.version>
+        <mybatis-plus.version>3.5.18.1</mybatis-plus.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -170,6 +171,13 @@
                 <version>${zzyl.version}</version>
             </dependency>
 
+            <!-- 护理平台模块  -->
+            <dependency>
+                <groupId>com.zzyl</groupId>
+                <artifactId>zzyl-nursing-platform</artifactId>
+                <version>${zzyl.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -180,6 +188,7 @@
         <module>zzyl-quartz</module>
         <module>zzyl-generator</module>
         <module>zzyl-common</module>
+        <module>zzyl-nursing-platform</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -54,6 +54,17 @@
             <artifactId>zzyl-generator</artifactId>
         </dependency>
 
+        <!-- 护理平台 -->
+        <dependency>
+            <groupId>com.zzyl</groupId>
+            <artifactId>zzyl-nursing-platform</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baizhukui</groupId>
+            <artifactId>knife4j-openapi3-boot4-spring-boot-starter</artifactId>
+            <version>5.8.0</version>
+        </dependency>
     </dependencies>
 
     <build>
