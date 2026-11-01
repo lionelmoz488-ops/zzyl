@@ -127,8 +127,10 @@ springdoc:
   group-configs:
     - group: 'default'
       display-name: '测试模块'
-      paths-to-match: '/**'
-      packages-to-scan: com.zzyl.web.controller.tool
+      paths-to-match:
+      - '/**'
+      packages-to-scan:
+      - com.zzyl.web.controller.tool
 
 # 防盗链配置
 referer:
@@ -145,3 +147,9 @@ xss:
   excludes: /system/notice
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+
+# 阿里云OSS相关配置
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: java-ai-1433223

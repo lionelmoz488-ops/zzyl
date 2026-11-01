@@ -59,6 +59,13 @@
             <groupId>com.zzyl</groupId>
             <artifactId>zzyl-nursing-platform</artifactId>
         </dependency>
+
+        <!-- 阿里云OSS -->
+        <dependency>
+            <groupId>com.zzyl</groupId>
+            <artifactId>zzyl-oss</artifactId>
+            <version>3.9.2</version>
+        </dependency>
     </dependencies>
 
     <build>

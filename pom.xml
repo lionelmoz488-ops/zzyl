@@ -31,6 +31,9 @@
         <jwt.version>0.9.1</jwt.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <springdoc.version>3.1.0</springdoc.version>
+        <aliyun.sdk.oss>3.17.4</aliyun.sdk.oss>
+        <lombok.version>1.18.46</lombok.version>
+
     </properties>
 
     <!-- 依赖声明 -->
@@ -44,6 +47,13 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- Lombok简化实体类代码 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
 
             <!-- 阿里数据库连接池 -->
@@ -177,6 +187,18 @@
                 <version>${zzyl.version}</version>
             </dependency>
 
+            <!-- 阿里云OSS -->
+            <dependency>
+                <groupId>com.zzyl</groupId>
+                <artifactId>zzyl-aliyun-oss</artifactId>
+                <version>${zzyl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun.sdk.oss}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -188,6 +210,7 @@
         <module>zzyl-generator</module>
         <module>zzyl-common</module>
         <module>zzyl-nursing-platform</module>
+        <module>zzyl-oss</module>
     </modules>
     <packaging>pom</packaging>
 
