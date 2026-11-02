@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.zzyl.nursing.mapper.NursingLevelMapper;
 import com.zzyl.nursing.domain.NursingLevel;
 import com.zzyl.nursing.service.INursingLevelService;
-
+import com.zzyl.nursing.vo.NursingLevelVo;
 /**
  * 护理等级Service业务层处理
  * 
@@ -29,8 +29,12 @@ public class NursingLevelServiceImpl extends ServiceImpl<NursingLevelMapper, Nur
     public List<NursingLevel> selectNursingLevelList(NursingLevel nursingLevel)
     {
         return baseMapper.selectList(Wrappers.<NursingLevel>lambdaQuery()
-                .like(StringUtils.isNotEmpty(nursingLevel.getName()), NursingLevel::getName, nursingLevel.getName())
-                .eq(nursingLevel.getPlanId() != null, NursingLevel::getPlanId, nursingLevel.getPlanId()));
+                .like(StringUtils.isNotEmpty(nursingLevel.getName()),
+                        NursingLevel::getName, nursingLevel.getName())
+                .eq(nursingLevel.getPlanId() != null,
+                        NursingLevel::getPlanId, nursingLevel.getPlanId())
+                .eq(nursingLevel.getStatus() != null,
+                        NursingLevel::getStatus, nursingLevel.getStatus()));
     }
 
     /**
@@ -58,6 +62,11 @@ public class NursingLevelServiceImpl extends ServiceImpl<NursingLevelMapper, Nur
     {
         nursingLevel.setUpdateTime(DateUtils.getNowDate());
         return baseMapper.updateById(nursingLevel);
+    }
+
+    @Override
+    public List<NursingLevelVo> selectNursingLevelVoList(NursingLevel nursingLevel) {
+        return baseMapper.selectNursingLevelVoList(nursingLevel);
     }
 
 }

@@ -3,6 +3,7 @@ package com.zzyl.nursing.service;
 import java.util.List;
 import com.baomidou.mybatisplus.spring.service.IService;
 import com.zzyl.nursing.domain.NursingLevel;
+import com.zzyl.nursing.vo.NursingLevelVo;
 
 /**
  * 护理等级Service接口
@@ -36,4 +37,6 @@ public interface INursingLevelService extends IService<NursingLevel>
      */
     public int updateNursingLevel(NursingLevel nursingLevel);
 
+
+    List<NursingLevelVo> selectNursingLevelVoList(NursingLevel nursingLevel);
 }
