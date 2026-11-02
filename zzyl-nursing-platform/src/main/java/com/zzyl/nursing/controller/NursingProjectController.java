@@ -8,6 +8,7 @@ import com.zzyl.common.enums.BusinessType;
 import com.zzyl.common.utils.poi.ExcelUtil;
 import com.zzyl.nursing.domain.NursingProject;
 import com.zzyl.nursing.service.INursingProjectService;
+import com.zzyl.nursing.vo.NursingProjectVo;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -68,7 +69,7 @@ public class NursingProjectController extends BaseController
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
         // 从 URL 路径获取项目主键，查询结果放入统一成功响应的 data 字段。
-        return success(nursingProjectService.selectNursingProjectById(id));
+        return success(nursingProjectService.getById(id));
     }
 
     /**
@@ -107,6 +108,16 @@ public class NursingProjectController extends BaseController
     {
         // 将路径中逗号分隔的主键（如 /1,2,3）绑定为数组，交给 Service 批量删除。
         // 只要受影响行数大于 0，toAjax 就返回成功，并不要求所有传入主键都存在。
-        return toAjax(nursingProjectService.deleteNursingProjectByIds(ids));
+        return toAjax(nursingProjectService.removeByIds(java.util.Arrays.asList(ids)));
+    }
+
+    @GetMapping("/all")
+    @PreAuthorize("@ss.hasPermi('nursing:project:remove')")
+    @Log(title = "护理项目", businessType = BusinessType.OTHER)
+    public AjaxResult getAll()
+    {
+        List<NursingProjectVo> list = nursingProjectService.getAll();
+        return AjaxResult.success(list);
+
     }
 }

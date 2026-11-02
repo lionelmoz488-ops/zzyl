@@ -1,8 +1,10 @@
 package com.zzyl.nursing.service;
 
 import com.zzyl.nursing.domain.NursingProject;
+import com.zzyl.nursing.vo.NursingProjectVo;
 
 import java.util.List;
+import com.baomidou.mybatisplus.spring.service.IService;
 
 /**
  * 护理项目Service接口
@@ -10,16 +12,8 @@ import java.util.List;
  * @author pcj
  * @date 2026-10-30
  */
-public interface INursingProjectService 
+public interface INursingProjectService extends IService<NursingProject>
 {
-    /**
-     * 查询护理项目
-     * 
-     * @param id 护理项目主键
-     * @return 护理项目
-     */
-    public NursingProject selectNursingProjectById(Long id);
-
     /**
      * 查询护理项目列表
      * 
@@ -45,18 +39,8 @@ public interface INursingProjectService
     public int updateNursingProject(NursingProject nursingProject);
 
     /**
-     * 批量删除护理项目
-     * 
-     * @param ids 需要删除的护理项目主键集合
-     * @return 结果
+     * 查询所有护理项目列表
+     *
      */
-    public int deleteNursingProjectByIds(Long[] ids);
-
-    /**
-     * 删除护理项目信息
-     * 
-     * @param id 护理项目主键
-     * @return 结果
-     */
-    public int deleteNursingProjectById(Long id);
+    List<NursingProjectVo> getAll();
 }

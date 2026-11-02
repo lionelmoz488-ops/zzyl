@@ -1,5 +1,11 @@
 package com.zzyl.nursing.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.zzyl.common.annotation.Excel;
@@ -11,11 +17,13 @@ import com.zzyl.common.core.domain.BaseEntity;
  * @author pcj
  * @date 2026-10-30
  */
+@TableName("nursing_plan")
 public class NursingPlan extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
     /** 编号 */
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /** 排序号 */
@@ -23,6 +31,7 @@ public class NursingPlan extends BaseEntity
 
     /** 名称 */
     @Excel(name = "名称")
+    @TableField(insertStrategy = FieldStrategy.NOT_EMPTY, updateStrategy = FieldStrategy.NOT_EMPTY)
     private String planName;
 
     /** 状态 0禁用 1启用 */

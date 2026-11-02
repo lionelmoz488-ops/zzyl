@@ -4,7 +4,10 @@ import com.zzyl.common.utils.DateUtils;
 import com.zzyl.nursing.domain.NursingProject;
 import com.zzyl.nursing.mapper.NursingProjectMapper;
 import com.zzyl.nursing.service.INursingProjectService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zzyl.nursing.vo.NursingProjectVo;
+import com.baomidou.mybatisplus.spring.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.zzyl.common.utils.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,23 +19,8 @@ import java.util.List;
  * @date 2026-10-30
  */
 @Service
-public class NursingProjectServiceImpl implements INursingProjectService 
+public class NursingProjectServiceImpl extends ServiceImpl<NursingProjectMapper, NursingProject> implements INursingProjectService
 {
-    @Autowired
-    private NursingProjectMapper nursingProjectMapper;
-
-    /**
-     * 查询护理项目
-     * 
-     * @param id 护理项目主键
-     * @return 护理项目
-     */
-    @Override
-    public NursingProject selectNursingProjectById(Long id)
-    {
-        return nursingProjectMapper.selectNursingProjectById(id);
-    }
-
     /**
      * 查询护理项目列表
      * 
@@ -42,7 +30,9 @@ public class NursingProjectServiceImpl implements INursingProjectService
     @Override
     public List<NursingProject> selectNursingProjectList(NursingProject nursingProject)
     {
-        return nursingProjectMapper.selectNursingProjectList(nursingProject);
+        return baseMapper.selectList(Wrappers.<NursingProject>lambdaQuery()
+                .like(StringUtils.isNotEmpty(nursingProject.getName()), NursingProject::getName, nursingProject.getName())
+                .eq(nursingProject.getStatus() != null, NursingProject::getStatus, nursingProject.getStatus()));
     }
 
     /**
@@ -54,8 +44,9 @@ public class NursingProjectServiceImpl implements INursingProjectService
     @Override
     public int insertNursingProject(NursingProject nursingProject)
     {
+        nursingProject.setId(null);
         nursingProject.setCreateTime(DateUtils.getNowDate());
-        return nursingProjectMapper.insertNursingProject(nursingProject);
+        return baseMapper.insert(nursingProject);
     }
 
     /**
@@ -68,30 +59,16 @@ public class NursingProjectServiceImpl implements INursingProjectService
     public int updateNursingProject(NursingProject nursingProject)
     {
         nursingProject.setUpdateTime(DateUtils.getNowDate());
-        return nursingProjectMapper.updateNursingProject(nursingProject);
+        return baseMapper.updateById(nursingProject);
     }
 
     /**
-     * 批量删除护理项目
-     * 
-     * @param ids 需要删除的护理项目主键
-     * @return 结果
+     * 查询所有护理项目列表
+     *
+     *
      */
     @Override
-    public int deleteNursingProjectByIds(Long[] ids)
-    {
-        return nursingProjectMapper.deleteNursingProjectByIds(ids);
-    }
-
-    /**
-     * 删除护理项目信息
-     * 
-     * @param id 护理项目主键
-     * @return 结果
-     */
-    @Override
-    public int deleteNursingProjectById(Long id)
-    {
-        return nursingProjectMapper.deleteNursingProjectById(id);
+    public List<NursingProjectVo> getAll() {
+        return baseMapper.getAll();
     }
 }

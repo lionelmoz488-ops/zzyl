@@ -66,7 +66,7 @@ public class NursingLevelController extends BaseController
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
-        return success(nursingLevelService.selectNursingLevelById(id));
+        return success(nursingLevelService.getById(id));
     }
 
     /**
@@ -99,6 +99,6 @@ public class NursingLevelController extends BaseController
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
     {
-        return toAjax(nursingLevelService.deleteNursingLevelByIds(ids));
+        return toAjax(nursingLevelService.removeByIds(java.util.Arrays.asList(ids)));
     }
 }

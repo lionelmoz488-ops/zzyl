@@ -1,5 +1,11 @@
 package com.zzyl.nursing.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
+
 import java.math.BigDecimal;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -12,15 +18,18 @@ import com.zzyl.common.core.domain.BaseEntity;
  * @author pcj
  * @date 2026-10-30
  */
+@TableName("nursing_level")
 public class NursingLevel extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
     /** 主键ID */
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /** 等级名称 */
     @Excel(name = "等级名称")
+    @TableField(insertStrategy = FieldStrategy.NOT_EMPTY, updateStrategy = FieldStrategy.NOT_EMPTY)
     private String name;
 
     /** 护理计划ID */
@@ -37,6 +46,7 @@ public class NursingLevel extends BaseEntity
 
     /** 等级说明 */
     @Excel(name = "等级说明")
+    @TableField(insertStrategy = FieldStrategy.NOT_EMPTY, updateStrategy = FieldStrategy.NOT_EMPTY)
     private String description;
 
     public void setId(Long id) 

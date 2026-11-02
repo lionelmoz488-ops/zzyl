@@ -1,6 +1,7 @@
 package com.zzyl.nursing.service;
 
 import java.util.List;
+import com.baomidou.mybatisplus.spring.service.IService;
 import com.zzyl.nursing.domain.NursingLevel;
 
 /**
@@ -9,16 +10,8 @@ import com.zzyl.nursing.domain.NursingLevel;
  * @author pcj
  * @date 2026-10-30
  */
-public interface INursingLevelService 
+public interface INursingLevelService extends IService<NursingLevel>
 {
-    /**
-     * 查询护理等级
-     * 
-     * @param id 护理等级主键
-     * @return 护理等级
-     */
-    public NursingLevel selectNursingLevelById(Long id);
-
     /**
      * 查询护理等级列表
      * 
@@ -43,19 +36,4 @@ public interface INursingLevelService
      */
     public int updateNursingLevel(NursingLevel nursingLevel);
 
-    /**
-     * 批量删除护理等级
-     * 
-     * @param ids 需要删除的护理等级主键集合
-     * @return 结果
-     */
-    public int deleteNursingLevelByIds(Long[] ids);
-
-    /**
-     * 删除护理等级信息
-     * 
-     * @param id 护理等级主键
-     * @return 结果
-     */
-    public int deleteNursingLevelById(Long id);
 }
